@@ -6,14 +6,10 @@ services:
       - "7860:7860"
     volumes:
       - ../sd-data:/data
-      - ../sd-output:/output
+      - ../sd-output:/outputs
       - sd-cache:/root/.cache
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
-              count: 1
-              capabilities: [gpu]
+    devices:
+      - "/dev/kfd"
+      - "/dev/dri"
 volumes:
   sd-cache:
